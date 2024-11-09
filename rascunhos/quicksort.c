@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 void trocar(int *a, int *b)
 {
@@ -8,34 +9,30 @@ void trocar(int *a, int *b)
     *b = temp;
 }
 
-void heapify(int lista[], int tamanho, int i)
+int particionar(int lista[], int inicio, int fim)
 {
-    int maior = i;
-    int esquerda = 2 * i + 1;
-    int direita = 2 * i + 2;
+    int pivô = lista[fim];
+    int i = inicio - 1;
 
-    if (esquerda < tamanho && lista[esquerda] > lista[maior])
-        maior = esquerda;
-
-    if (direita < tamanho && lista[direita] > lista[maior])
-        maior = direita;
-
-    if (maior != i)
+    for (int j = inicio; j < fim; j++)
     {
-        trocar(&lista[i], &lista[maior]);
-        heapify(lista, tamanho, maior);
+        if (lista[j] < pivô)
+        {
+            i++;
+            trocar(&lista[i], &lista[j]);
+        }
     }
+    trocar(&lista[i + 1], &lista[fim]);
+    return i + 1;
 }
 
-void heapSort(int lista[], int tamanho)
+void quicksort(int lista[], int inicio, int fim)
 {
-    for (int i = tamanho / 2 - 1; i >= 0; i--)
-        heapify(lista, tamanho, i);
-
-    for (int i = tamanho - 1; i > 0; i--)
+    if (inicio < fim)
     {
-        trocar(&lista[0], &lista[i]);
-        heapify(lista, i, 0);
+        int índicePivô = particionar(lista, inicio, fim);
+        quicksort(lista, inicio, índicePivô - 1);
+        quicksort(lista, índicePivô + 1, fim);
     }
 }
 
@@ -67,9 +64,8 @@ int main()
         scanf("%d", &lista[i]);
     }
 
-    heapSort(lista, tamanho);
+    quicksort(lista, 0, tamanho - 1);
 
-    printf("Lista organizada: ");
     exibirLista(lista, tamanho);
 
     free(lista);
