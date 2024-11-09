@@ -175,12 +175,12 @@ void heapSort(int lista[], int tamanho)
 
 int particionar(int lista[], int inicio, int fim)
 {
-    int pivô = lista[fim];
+    int pivo = lista[fim];
     int i = inicio - 1;
 
     for (int j = inicio; j < fim; j++)
     {
-        if (lista[j] < pivô)
+        if (lista[j] < pivo)
         {
             i++;
             trocar(&lista[i], &lista[j]);
@@ -194,9 +194,9 @@ void quicksort(int lista[], int inicio, int fim)
 {
     if (inicio < fim)
     {
-        int índicePivô = particionar(lista, inicio, fim);
-        quicksort(lista, inicio, índicePivô - 1);
-        quicksort(lista, índicePivô + 1, fim);
+        int indicePivo = particionar(lista, inicio, fim);
+        quicksort(lista, inicio, indicePivo - 1);
+        quicksort(lista, indicePivo + 1, fim);
     }
 }
 
@@ -211,7 +211,7 @@ void exibirLista(int lista[], int tamanho)
 // função principal com menu
 int main()
 {
-    int arr[100000];                      // declaração do array e do seu tamanho
+    int arr[100];                         // declaração do array e do seu tamanho
     int n = sizeof(arr) / sizeof(arr[0]); // é calculado pelo número de elementos no array
     int choice;                           // declaração da variável que irá armazenar a escolha do método feita pelo usuário
 
