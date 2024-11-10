@@ -222,8 +222,8 @@ int main()
     {
         // Exibe o menu para o usuário escolher o método de ordenação ou sair
         printf("\nEscolha o método de ordenação:\n");
-        printf("1. Selection Sort\n");
-        printf("2. Insertion Sort\n");
+        printf("1. Select Sort\n");
+        printf("2. Insert Sort\n");
         printf("3. Bubble Sort\n");
         printf("4. Merge Sort\n");
         printf("5. Quick Sort\n");
